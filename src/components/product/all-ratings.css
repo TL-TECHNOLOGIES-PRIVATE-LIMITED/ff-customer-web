@@ -1,0 +1,118 @@
+#all-ratings-section .productLogo {
+  width: 120px;
+  height: 120px;
+}
+#all-ratings-section .userReviewImages {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+}
+#all-ratings-section {
+  background-color: var(--second-cards-color);
+  border-radius: 8px;
+}
+.allReviewTitle {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 34px;
+  color: var(--font-color);
+}
+#all-ratings-section .productContainer .productName {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--font-color);
+}
+#all-ratings-section .productContainer .productPrice {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 34px;
+  color: var(--secondary-color-dark);
+}
+#all-ratings-section .productContainer {
+  margin-bottom: 16px;
+}
+#all-ratings-section .title {
+  font-weight: 700;
+  font-size: 16px;
+}
+#all-ratings-section .starRatingContainer {
+  font-weight: 500;
+}
+#all-ratings-section .reviewList {
+  background-color: var(--body-background);
+  padding: 16px;
+  border-radius: 4px;
+  color: var(--font-color);
+}
+#all-ratings-section .reviewList .overlayParent {
+  position: relative;
+}
+#all-ratings-section .reviewList .overlayParent::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #0000005e;
+  left: 0;
+  opacity: 0.7;
+  border-radius: 5px;
+}
+
+#all-ratings-section .reviewList .overlayParent .overlay {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  color: var(--bs-white);
+  font-size: 20px;
+  z-index: 2;
+}
+#all-ratings-section .review-container-date {
+  font-size: 14px;
+  font-weight: 400;
+  color: #aeaeae;
+}
+#all-ratings-section .ratingBar {
+  width: 70% !important;
+}
+
+#all-ratings-section .allRatingImagesContainer {
+  gap: 10px;
+}
+#all-ratings-section .allRatingImagesContainer img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+}
+#all-ratings-section .allImagesTitle {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--font-color);
+}
+#all-ratings-section .allRatingImagesContainer .overlayParent {
+  position: relative;
+}
+#all-ratings-section .allRatingImagesContainer .overlayParent::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #0000005e;
+  left: 0;
+  opacity: 0.7;
+  border-radius: 5px;
+}
+
+#all-ratings-section .allRatingImagesContainer .overlayParent .overlay {
+  position: absolute;
+  right: 18px;
+  top: 25px;
+  color: var(--bs-white);
+  font-size: 20px;
+  z-index: 2;
+}
+#all-ratings-section .allRatingsPagination > a {
+  color: var(--font-color);
+}

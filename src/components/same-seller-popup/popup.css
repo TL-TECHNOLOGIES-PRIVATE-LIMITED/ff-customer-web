@@ -1,0 +1,28 @@
+.modal-content {
+  font-size: 20px;
+  padding: 10px;
+}
+.modal-body {
+  font-size: 20px;
+}
+.yes-btn {
+  padding: 4px 22px;
+  border-radius: 8px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  color: var(--body-background);
+}
+.no-btn {
+  padding: 4px 22px;
+  border-radius: 8px;
+  border-radius: 10px;
+  background-color: #d22b2b;
+  color: var(--body-background);
+}
+.singleSellerPopup .modal-body .header .closeBtn {
+  background-color: inherit;
+}
+
+.singleSellerPopup .modal-body .header .closeBtn svg {
+  fill: var(--font-color);
+}

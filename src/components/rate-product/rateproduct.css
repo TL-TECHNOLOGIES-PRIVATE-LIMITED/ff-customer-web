@@ -1,0 +1,140 @@
+.rateProductModal .modalHeading {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.modal-content {
+  border-radius: 8px !important;
+}
+
+.rateProductModal .rateForm .starBackground {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #141a1f29;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.star:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.active {
+  fill: #fead0e !important;
+  stroke: #fead0e !important;
+}
+
+.hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.reviewTextArea {
+  border: 1px solid lightgrey;
+  width: 100%;
+  border-radius: 5px;
+  padding: 15px;
+  resize: none;
+}
+
+.satisfied {
+  fill: #8bc34a;
+}
+
+.verySatisfied {
+  fill: #4caf50;
+}
+
+.neutral {
+  fill: #ffc107;
+}
+
+.veryDissatisfied {
+  fill: #f44336;
+}
+
+.dissatisfied {
+  fill: #ff5252;
+}
+
+.rateProductModal .rateForm .submitRating {
+  width: 171px;
+  height: 46px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #55ae7b;
+  color: var(--bs-white);
+  gap: 4px;
+}
+
+.rateProductModal .rateForm .submitRating:hover {
+  background-color: var(--secondary-color-dark);
+}
+
+.crossLogo {
+  /* background-color: var(--body-color); */
+  color: var(--font-color);
+}
+
+.rateProductModal .rateForm .uploadContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #141a1f29;
+}
+
+.rateProductModal .rateForm .uploadContainer:hover {
+  cursor: pointer;
+}
+
+.rateProductModal .rateForm .placeHolderImage {
+  width: 50px;
+  height: auto;
+  opacity: 0.4;
+}
+
+.rateProductModal .rateForm .fileInput {
+  display: none;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.modalSubHeading {
+  margin-bottom: 16px;
+}
+
+.rateProductModal .rateForm .uploadedImages {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  position: relative;
+  margin: 10px;
+}
+
+.rateProductModal .rateForm .uploadedImagesContainer {
+  position: relative;
+}
+
+.rateProductModal .rateForm .deleteUploaded {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: #db3d26;
+  color: var(--bs-white);
+}
+
+.rateProductModal .rateForm .deleteUploaded:hover {
+  cursor: pointer;
+}

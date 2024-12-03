@@ -1,0 +1,18 @@
+.underMaintenanceContainer {
+  height: 100vh;
+}
+.underMaintenanceContainer .underMaintenanceText {
+  font-size: 4rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+.underMaintenanceContainer .underMaintenanceSubText {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.underMaintenanceContainer img {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 20px;
+  object-fit: contain;
+}

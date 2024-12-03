@@ -1,0 +1,108 @@
+.products-container-section {
+    background-color: var(--body-background);
+    padding: 24px 0px;
+}
+
+.container .product-container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--font-color);
+    padding-bottom: 12px;
+}
+
+.container .product-container-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.container .product-container-header p {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.container .product-container-header span {
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0px 12px;
+    text-decoration: none;
+    color: var(--font-color);
+}
+
+.container .product-container-header span:hover {
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+
+
+
+.product-image-container-swiper {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.product-container-with-image {
+    padding: 24px 0px;
+}
+
+@media (max-width: 768px) {
+    .product-image-container-swiper {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .product-image-container-swiper .swiper-cover-img {
+        width: 100%;
+        /* height: 50% !important; */
+        object-fit: cover;
+        aspect-ratio: 266/395;
+        padding: 12px 0px !important;
+        /* border-radius: 12px 0px 0px 12px; */
+    }
+}
+
+
+
+.product-image-container-swiper .swiper-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 266/395;
+    /* padding: 12px 0px; */
+    /* border-radius: 12px 0px 0px 12px; */
+    padding-bottom: 12px;
+}
+
+@media screen and (min-width:1400px) {
+    .product-image-container-swiper .swiper-cover-img {
+        height: 436px !important;
+        padding-bottom: 0px;
+    }
+}
+
+@media (min-width:992px) and (max-width:1199px) {
+    .product-image-container-swiper .swiper-cover-img {
+        padding-bottom: 0px;
+    }
+}
+
+@media (max-width:992px) {
+    .product-image-container-swiper .swiper-cover-img {
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 3/2;
+    }
+}
+
+@media (max-width: 575px) and (min-width: 400px) {
+    .custom-col {
+        width: 50% !important;
+        /* Two cards per row */
+    }
+}
+
+.promotion-img {
+    padding: 24px 0px;
+}
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>__REACT_APP_BASE_URL__/</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>1.00</priority>
+</url>
+
+<url>
+  <loc>__REACT_APP_BASE_URL__/about</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/contact</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/faqs</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/notification</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/wishlist</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/cart</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/profile</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/categories</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/products</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/product</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/product/:slug</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/terms</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/checkout</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/policy/Privacy_Policy</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/policy/ReturnsAndExchangesPolicy</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/policy/ReturnsAndExchangesPolicy</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>__REACT_APP_BASE_URL__/policy/Cancellation_Policy</loc>
+  <lastmod>LAST_MODIFIED</lastmod>
+  <priority>0.80</priority>
+</url>
+</urlset>

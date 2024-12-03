@@ -1,0 +1,101 @@
+.modal-header .modal-title {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+}
+
+.modal-header .btn-close {
+    background-color: var(--body-color);
+    border-radius: 100px;
+    padding: 10px !important;
+    border: 1px solid gainsboro;
+}
+
+.modal-body {
+    padding: 24px !important;
+
+}
+
+.modal-body .product-info {
+    background-color: var(--buttons-background-color);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    height: 82px;
+}
+
+.modal-body .product-info img {
+    height: 54px;
+    width: 54px;
+}
+
+.modal-body .product-info p {
+    font-size: 16px;
+    padding: 13px 8px;
+    font-weight: 500;
+}
+
+.modal-body .product-variants {
+    margin-top: 32px;
+}
+
+.modal-body .product-variants .variant-row {
+    margin-bottom: 16px;
+}
+
+.modal-body .product-variants .variant-row .variant-price {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.modal-body .product-variants .variant-row .variant-out-of-stock {
+    font-size: 16px;
+    color: #DB3D26;
+    font-weight: 900;
+    display: flex;
+    justify-content: end;
+}
+
+.modal-body .product-variants button {
+    width: 100%;
+}
+
+.cart-variant-count-btn {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 4px;
+    height: 100%;
+    /* padding: 8px; */
+    font-size: 16px;
+    height: 84%;
+    margin: 5px 0px;
+    border: 1px solid var(--body-background-color);
+    align-items: center;
+}
+
+.cart-variant-count-btn input {
+    text-align: center;
+    background: #fff;
+    width: 100%;
+    background: transparent;
+}
+
+.cart-variant-count-btn button {
+    /* height: 119%; */
+    /* padding: 7px 10px; */
+    border-radius: 4px;
+    background-color: var(--secondary-color);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    height: 38px;
+    width: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qty-change-btn {
+    width: 60% !important;
+}

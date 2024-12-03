@@ -1,0 +1,87 @@
+{
+  "name": "egrocer",
+  "version": "2.0.5",
+  "private": true,
+  "homepage": "https://frostys.in/",
+  "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/slider": "^2.1.0",
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "@paypal/react-paypal-js": "^8.1.3",
+    "@paystack/inline-js": "^2.13.0",
+    "@react-google-maps/api": "^2.19.3",
+    "@reduxjs/toolkit": "^1.9.7",
+    "@stripe/react-stripe-js": "^2.4.0",
+    "@stripe/stripe-js": "^2.4.0",
+    "antd": "^5.18.3",
+    "axios": "1.3.1",
+    "bootstrap": "^5.3.2",
+    "bootstrap-icons": "^1.11.1",
+    "firebase": "^9.19.1",
+    "framer-motion": "^10.16.4",
+    "i18next": "^23.6.0",
+    "jwt-decode": "^3.1.2",
+    "lottie-react": "^2.4.0",
+    "otp-input-react": "^0.3.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.10.1",
+    "react-calendar": "^4.6.1",
+    "react-confirm-alert": "^3.0.6",
+    "react-device-detect": "^2.2.3",
+    "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
+    "react-i18next": "^13.3.0",
+    "react-icons": "^4.11.0",
+    "react-js-pagination": "3.0.2",
+    "react-loading-skeleton": "^3.3.1",
+    "react-owl-carousel": "^2.3.3",
+    "react-paystack": "^4.0.2",
+    "react-phone-input-2": "^2.15.1",
+    "react-range": "^1.8.14",
+    "react-razorpay": "^3.0.1",
+    "react-redux": "^8.1.3",
+    "react-router-dom": "^6.17.0",
+    "react-scripts": "5.0.1",
+    "react-share": "^5.1.0",
+    "react-slick": "^0.30.2",
+    "react-slider": "^2.0.6",
+    "react-toastify": "^9.1.1",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^3.1.0",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.1.4",
+    "validator": "^13.11.0",
+    "yet-another-react-lightbox": "^3.17.1"
+  },
+  "scripts": {
+    "start": "node generator.js && react-scripts start",
+    "build": "node generator.js && react-scripts build --openssl-legacy-provider && node ftp.js",
+    "vercel-build": "react-scripts build --openssl-legacy-provider",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.23.4",
+    "dotenv": "^16.4.5",
+    "ftp-deploy": "^2.4.5"
+  }
+}

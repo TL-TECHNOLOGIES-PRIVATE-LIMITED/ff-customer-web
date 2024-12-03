@@ -1,0 +1,44 @@
+.horizontal-product-section {
+    padding: 24px 0px;
+}
+
+.container .product-container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--font-color);
+}
+
+.container .product-container-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.container .product-container-header p {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.container .product-container-header span {
+
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0px 12px;
+    text-decoration: none;
+    color: var(--font-color);
+}
+
+.container .product-container-header span:hover {
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+
+
+.horizontal-product-section {
+    padding: 24px 0px;
+}
+
+.promotion-img {
+    padding: 24px 0px;
+}

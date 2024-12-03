@@ -1,0 +1,31 @@
+.payment-container {
+  font-size: 24px;
+  height: 600px;
+}
+
+.success_modal .success_body {
+  font-size: 24px;
+  border: 0;
+  text-align: center;
+}
+
+.success_modal .success_header {
+  border: 0;
+}
+
+.success_modal .success_footer {
+  border: 0;
+  justify-content: center;
+}
+
+.payment-container .checkout_btn {
+  width: 20%;
+  height: 65px;
+  font-size: 18px;
+  z-index: 9;
+  background-color: var(--secondary-color);
+  color: var(--bs-white);
+  border: 0;
+  font-weight: 700;
+  margin-top: 50px;
+}
