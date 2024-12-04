@@ -138,7 +138,8 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
             const result = await response.json();
             if (result.status == 1) {
                 setCartSidebarData(result.data.cart);
-                setGuestCartSubTotal(result.data.sub_total);
+                setGuestCartSubTotal(result.data.subtotal);
+                
                 // dispatch(addGuestCartTotal({ data: result.data.sub_total }));
             }
         } catch (e) {

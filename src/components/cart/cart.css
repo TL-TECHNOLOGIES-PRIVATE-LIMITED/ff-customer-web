@@ -2,6 +2,10 @@
   padding: 20px;
 }
 
+.subtotal {
+ font-size: larger
+}
+
 .cart-sidebar-container .empty-cart {
   height: 100%;
   display: flex;

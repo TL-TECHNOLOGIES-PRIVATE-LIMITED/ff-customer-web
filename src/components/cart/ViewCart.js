@@ -37,6 +37,9 @@ const ViewCart = () => {
     const [cartProducts, setViewCartProducts] = useState([]);
     const [isNetworkError, setIsNetworkError] = useState(false);
     const [guestCartSubTotal, setGuestCartSubTotal] = useState(null);
+    const [guestCartItemsPrice, setGuestCartItemsPrice] = useState(0);
+    const [guestCartDiscount, setGuestCartDiscount] = useState(0);
+    const [guestCartGst, setGuestCartGst] = useState(0);
 
     useEffect(() => {
         if (location.pathname == "/cart" && cart?.isGuest === false) {
@@ -79,7 +82,7 @@ const ViewCart = () => {
         if (location.pathname == "/cart" && cart?.isGuest === true) {
             fetchGuestCart();
         }
-    }, []);
+    }, [guestCartSubTotal]);
 
     const fetchGuestCart = async () => {
         setisLoader(true);
@@ -90,7 +93,15 @@ const ViewCart = () => {
             const result = await response.json();
             if (result.status == 1) {
                 setViewCartProducts(result.data.cart);
-                setGuestCartSubTotal(result.data.sub_total);
+                console.log(result?.data?.cart, 'cart');
+                console.log(result?.data, 'sub_total');
+
+
+                setGuestCartSubTotal(result.data.subtotal);
+                setGuestCartSubTotal(result.data.subtotal); // Subtotal
+                setGuestCartItemsPrice(result.data.items_price); // Items price
+                setGuestCartDiscount(result.data.discount); // Discount
+                setGuestCartGst(result.data.gst); // GST
                 result?.data?.cart?.length > 0 ? setiscartEmpty(false) : setiscartEmpty(true);
             }
         } catch (e) {
@@ -471,6 +482,44 @@ const ViewCart = () => {
                                                         : (
                                                             <div className='summary'>
                                                                 <div className='d-flex justify-content-between'>
+                                                                    <span>Item price</span>
+                                                                    <div className='d-flex align-items-center'>
+                                                                        {setting.setting && setting.setting.currency}
+                                                                        <span>{
+                                                                            cart?.isGuest === false ?
+                                                                                (cart?.cartSubTotal)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                :
+                                                                                guestCartItemsPrice?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                        }</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div className='d-flex justify-content-between'>
+                                                                    <span>Discount</span>
+                                                                    <div className='d-flex align-items-center'>
+                                                                        -&nbsp;
+                                                                        {setting.setting && setting.setting.currency}
+                                                                        <span>{
+                                                                            cart?.isGuest === false ?
+                                                                                (cart?.cartSubTotal)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                :
+                                                                                guestCartDiscount?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                        }</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div className='d-flex justify-content-between'>
+                                                                    <span>GST</span>
+                                                                    <div className='d-flex align-items-center'>
+                                                                        +&nbsp;
+                                                                        {setting.setting && setting.setting.currency}
+                                                                        <span>{
+                                                                            cart?.isGuest === false ?
+                                                                                (cart?.cartSubTotal)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                :
+                                                                                guestCartGst?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                        }</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div  className='d-flex justify-content-between subtotal'>
                                                                     <span>{t("sub_total")}</span>
                                                                     <div className='d-flex align-items-center'>
                                                                         {setting.setting && setting.setting.currency}
@@ -483,8 +532,8 @@ const ViewCart = () => {
                                                                     </div>
                                                                 </div>
                                                                 {cart.promo_code && <>
-                                                                    <div className='d-flex justify-content-between'>
-                                                                        <span>{t("discount")}</span>
+                                                                    <div className='d-flex justify-content-between '>
+                                                                        <span className='fw-bold '>{t("discount")}</span>
                                                                         <div className='d-flex align-items-center'>
 
                                                                             <span>-   {setting.setting && setting.setting.currency}{(cart?.promo_code.discount)?.toFixed(setting.setting && setting.setting.decimal_point)}</span>
