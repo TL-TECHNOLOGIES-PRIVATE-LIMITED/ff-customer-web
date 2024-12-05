@@ -97,8 +97,7 @@ const ViewCart = () => {
                 console.log(result?.data, 'sub_total');
 
 
-                setGuestCartSubTotal(result.data.subtotal);
-                setGuestCartSubTotal(result.data.subtotal); // Subtotal
+                setGuestCartSubTotal(result.data.sub_total);
                 setGuestCartItemsPrice(result.data.items_price); // Items price
                 setGuestCartDiscount(result.data.discount); // Discount
                 setGuestCartGst(result.data.gst); // GST
