@@ -111,6 +111,8 @@ const ProductDetails = () => {
                         dispatch(setSelectedProduct({ data: result?.data[0]?.id }));
                         setproductdata(result.data);
                         // console.log(result.data, 'productdata from api');
+                        
+                        // console.log(result.data, 'productdata from api');
 
                         setVariantIndex(result.data.variants[0]?.id);
                         setSelectedVariant(result.data.variants?.length > 0 && result.data.variants.find((element) => element.id == variant_index) ? result.data.variants.find((element) => element.id == variant_index) : result.data.variants[0]);

@@ -206,7 +206,7 @@ function ProductVariantModal({ product, showVariantModal, setShowVariantModal })
                                 <div className='row d-flex align-items-center variant-row'>
                                     <div className='col-4 col-lg-7'>{`${variant?.measurement} ${variant?.stock_unit_name}`}</div>
                                     {variant?.is_unlimited_stock === 0 && variant?.stock <= 0 ? <></> :
-                                        <div className='col-4 col-lg-2 mr-4 variant-price'>{setting?.setting?.currency}{variant?.discounted_price == 0 ? variant?.price : variant?.discounted_price}</div>
+                                        <div className='col-4 col-lg-2 mr-4 variant-price'>{setting?.setting?.currency}{variant?.normal_discounted_price == 0 ? variant?.price : variant?.normal_discounted_price}</div>
                                     }
                                     {variant?.is_unlimited_stock === 0 && variant?.stock <= 0 ? <span className='col-5 mr-4 variant-out-of-stock'>{t("OutOfStock")} </span> :
                                         <div className='col-4 col-lg-3 '>

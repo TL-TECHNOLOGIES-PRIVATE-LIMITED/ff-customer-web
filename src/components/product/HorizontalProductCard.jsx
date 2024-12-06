@@ -351,10 +351,10 @@ const HorizonalProduct = ({ product }) => {
                         </div>
                         <div className='horizontal-product-price'>{
                             <div className="price">{setting.setting.currency}{selectedVariant?.
-                                discounted_price !== 0 ? selectedVariant?.
-                                discounted_price : selectedVariant?.
+                                normal_discounted_price !== 0 ? selectedVariant?.
+                                normal_discounted_price : selectedVariant?.
                                 price}<span>{selectedVariant?.
-                                    discounted_price !== 0 && <>
+                                    normal_discounted_price !== 0 && <>
                                         {setting.setting.currency}
                                         {selectedVariant?.
                                             price}
