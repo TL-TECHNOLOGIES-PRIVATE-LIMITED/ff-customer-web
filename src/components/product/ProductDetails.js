@@ -111,7 +111,7 @@ const ProductDetails = () => {
                         dispatch(setSelectedProduct({ data: result?.data[0]?.id }));
                         setproductdata(result.data);
                         // console.log(result.data, 'productdata from api');
-                        
+
                         // console.log(result.data, 'productdata from api');
 
                         setVariantIndex(result.data.variants[0]?.id);
@@ -600,11 +600,11 @@ const ProductDetails = () => {
                                                         </div>
 
                                                         {/* total saved */}
-                                                        
-                                                        <div  id="price-section" className='d-flex flex-row gap-2 align-items-center'>
-                                                            <span  id="price-section" className="text-muted">You save:</span>
+
+                                                        <div className='d-flex flex-row gap-2 align-items-center text-success' style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                                                            <span className="text-muted" style={{ fontSize: '20px' }}>You save:</span>
                                                             {setting.setting && setting.setting.currency}
-                                                            <p id='fa-rupee' className='m-0'>
+                                                            <p id='fa-rupee' className='m-0 text-success' style={{ fontSize: '20px' }}>
                                                                 {selectedVariant
                                                                     ? (selectedVariant.normal_price - selectedVariant.normal_discounted_price).toFixed(setting.setting && setting.setting.decimal_point)
                                                                     : (productdata.variants[0].normal_price - productdata.variants[0].normal_discounted_price).toFixed(setting.setting && setting.setting.decimal_point)
