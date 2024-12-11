@@ -34,7 +34,6 @@ const ProductSwiperWithImage = ({ section, index }) => {
         navigate("/products")
     }
 
-
     return (
         <>
             {section?.products?.length > 0 ?
