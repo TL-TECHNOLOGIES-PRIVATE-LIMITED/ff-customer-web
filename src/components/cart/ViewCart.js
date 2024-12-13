@@ -12,7 +12,7 @@ import { RiCoupon2Fill, RiDeleteBinLine } from 'react-icons/ri';
 import Loader from '../loader/Loader';
 import Promo from './Promo';
 import { useTranslation } from 'react-i18next';
-import { addtoGuestCart, clearCartPromo, setCart, setCartDiscount, setCartGst, setCartItemPrice, setCartProducts, setCartSubTotal } from '../../model/reducer/cartReducer';
+import { addtoGuestCart, clearCartPromo, setCart, setCartProducts, setCartSubTotal } from '../../model/reducer/cartReducer';
 import { ValidateNoInternet } from '../../utils/NoInternetValidator';
 import { MdSignalWifiConnectedNoInternet0 } from 'react-icons/md';
 
@@ -41,7 +41,6 @@ const ViewCart = () => {
     const [guestCartDiscount, setGuestCartDiscount] = useState(0);
     const [guestCartGst, setGuestCartGst] = useState(0);
 
-    
     useEffect(() => {
         if (location.pathname == "/cart" && cart?.isGuest === false) {
             api.getCart(user?.jwtToken, city.city.latitude, city.city.longitude, 0)
@@ -61,10 +60,6 @@ const ViewCart = () => {
                         dispatch(setCart({ data: result }));
                         dispatch(setCartSubTotal({ data: result?.data?.sub_total }));
                         dispatch(setCartProducts({ data: productsData }));
-
-                        dispatch(setCartItemPrice({ data: result?.data?.items_price }));
-                        dispatch(setCartDiscount({ data: result?.data?.discount }));
-                        dispatch(setCartGst({ data: result?.data?.gst }));
                     }
 
                 })
@@ -89,41 +84,6 @@ const ViewCart = () => {
         }
     }, [guestCartSubTotal]);
 
-
-
-    const fetchCartData = async () => {
-        setisLoader(true);
-        try {
-            const response = await api.getCart(user?.jwtToken, city?.city?.latitude, city?.city?.longitude);
-            const result = await response.json();
-            if (result.status == 1) {
-                const productsData = result?.data?.cart?.map((product) => {
-                    return {
-                        product_id: product?.product_id,
-                        product_variant_id: product?.product_variant_id,
-                        qty: product?.qty
-                    };
-                });
-                dispatch(setCart({ data: result }));
-                dispatch(setCartSubTotal({ data: result?.data?.sub_total }));
-                dispatch(setCartProducts({ data: productsData }));
-                // setCartSubTotal(result?.data?.sub_total);
-
-                dispatch(setCartItemPrice({ data: result?.data?.items_price }));
-                dispatch(setCartDiscount({ data: result?.data?.discount }));
-                dispatch(setCartGst({ data: result?.data?.gst }));
-
-                setCartSidebarData(result?.data?.cart);
-            } else if (result.message == "No item(s) found in users cart") {
-                setCartSidebarData([]);
-                dispatch(setCartProducts({ data: [] }));
-                dispatch(setCartSubTotal({ data: 0 }));
-            }
-        } catch (err) {
-            console.log(err?.message);
-        }
-        setisLoader(false);
-    };
     const fetchGuestCart = async () => {
         setisLoader(true);
         try {
@@ -181,7 +141,6 @@ const ViewCart = () => {
                         }
                     });
                     dispatch(setCartProducts({ data: updatedProducts }));
-                    fetchCartData();
                 }
                 else {
                     // setisLoader(false);
@@ -527,7 +486,7 @@ const ViewCart = () => {
                                                                         {setting.setting && setting.setting.currency}
                                                                         <span>{
                                                                             cart?.isGuest === false ?
-                                                                                (cart?.cartItemPrice)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                (cart?.cartSubTotal)?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                                 :
                                                                                 guestCartItemsPrice?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                         }</span>
@@ -540,7 +499,7 @@ const ViewCart = () => {
                                                                         {setting.setting && setting.setting.currency}
                                                                         <span>{
                                                                             cart?.isGuest === false ?
-                                                                                (cart?.cartDiscount)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                (cart?.cartSubTotal)?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                                 :
                                                                                 guestCartDiscount?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                         }</span>
@@ -553,13 +512,13 @@ const ViewCart = () => {
                                                                         {setting.setting && setting.setting.currency}
                                                                         <span>{
                                                                             cart?.isGuest === false ?
-                                                                                (cart?.cartGst)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                (cart?.cartSubTotal)?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                                 :
                                                                                 guestCartGst?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                         }</span>
                                                                     </div>
                                                                 </div>
-                                                                <div className='d-flex justify-content-between subtotal'>
+                                                                <div  className='d-flex justify-content-between subtotal'>
                                                                     <span>{t("sub_total")}</span>
                                                                     <div className='d-flex align-items-center'>
                                                                         {setting.setting && setting.setting.currency}

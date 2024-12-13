@@ -65,15 +65,6 @@ export const cartReducer = createSlice({
         subGuestCartTotal: (state, action) => {
             state.guestCartTotal -= action.payload.data
         },
-        setCartItemPrice: (state, action) => {
-                        state.cartItemPrice = action.payload.data;
-         },
-        setCartDiscount: (state, action) => {
-                        state.cartDiscount = action.payload.data;
-        },
-        setCartGst: (state, action) => {
-                        state.cartGst = action.payload.data;
-        }
         
     }
 });
@@ -92,119 +83,6 @@ export const {
     setTotalCartValue,
     setGuestCartTotal,
     addGuestCartTotal,
-    subGuestCartTotal,
-    setCartItemPrice,
-    setCartDiscount,
-    setCartGst
+    subGuestCartTotal
 } = cartReducer.actions;
 export default cartReducer.reducer;
-
-
-
-
-
-//new reducer 
-// import { createSlice } from "@reduxjs/toolkit";
-
-// const initialState = {
-//     status: 'loading', //fulfill
-//     cart: null,
-//     checkout: null,
-//     promo_code: null,
-//     is_wallet_checked: 0,
-//     same_seller_flag: 0,
-//     cartProducts: [],
-//     cartSubTotal: 0,
-//     guestCart: [],
-//     isGuest: true,
-//     guestCartTotal: 0,
-//     cartItemPrice: 0,  
-//     cartDiscount: 0,  
-//     cartGst: 0      
-// };
-
-// export const cartReducer = createSlice({
-//     name: "cart",
-//     initialState,
-//     reducers: {
-//         setCart: (state, action) => {
-//             state.status = "fulfill";
-//             state.cart = action.payload.data;
-//             state.cartItemPrice = action.payload.data.items_price || 0;
-//             state.cartDiscount = action.payload.data.discount || 0;
-//             state.cartGst = action.payload.data.gst || 0;
-//         },
-//         setCartCheckout: (state, action) => {
-//             state.status = "fulfill";
-//             state.checkout = action.payload.data;
-//         },
-//         setCartPromo: (state, action) => {
-//             state.status = "fulfill";
-//             state.promo_code = action.payload.data;
-//         },
-//         clearCartPromo: (state) => {
-//             state.cart.promo_code = null;
-//             state.promo_code = null;
-//         },
-//         setWallet: (state, action) => {
-//             state.status = "fulfill";
-//             state.is_wallet_checked = action.payload.data;
-//         },
-//         setSellerFlag: (state, action) => {
-//             state.status = "fulfill";
-//             state.same_seller_flag = action.payload.data;
-//         },
-//         setCartProducts: (state, action) => {
-//             state.cartProducts = action.payload.data;
-//         },
-//         setCartSubTotal: (state, action) => {
-//             state.cartSubTotal = action.payload.data;
-//         },
-//         setIsGuest: (state, action) => {
-//             state.isGuest = action.payload.data;
-//         },
-//         addtoGuestCart: (state, action) => {
-//             state.guestCart = action.payload.data;
-//         },
-//         setGuestCartTotal: (state, action) => {
-//             state.guestCartTotal = action.payload.data
-//         },
-//         addGuestCartTotal: (state, action) => {
-//             state.guestCartTotal += action.payload.data
-//         },
-//         subGuestCartTotal: (state, action) => {
-//             state.guestCartTotal -= action.payload.data
-//         },
-//         // New actions to update the renamed fields
-//         setCartItemPrice: (state, action) => {
-//             state.cartItemPrice = action.payload.data;
-//         },
-//         setCartDiscount: (state, action) => {
-//             state.cartDiscount = action.payload.data;
-//         },
-//         setCartGst: (state, action) => {
-//             state.cartGst = action.payload.data;
-//         }
-//     }
-// });
-
-// export const {
-//     setCart,
-//     setCartCheckout,
-//     setCartPromo,
-//     clearCartPromo,
-//     setWallet,
-//     setSellerFlag,
-//     setCartProducts,
-//     setCartSubTotal,
-//     setIsGuest,
-//     addtoGuestCart,
-//     setGuestCartTotal,
-//     addGuestCartTotal,
-//     subGuestCartTotal,
-//     setCartItemPrice,
-//     setCartDiscount,
-//     setCartGst
-// } = cartReducer.actions;
-
-// export default cartReducer.reducer;
