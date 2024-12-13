@@ -587,7 +587,7 @@ const ProductDetails = () => {
                                                             <div>
                                                                 <p className='fw-normal text-decoration-line-through' style={{ color: "var(--sub-text-color)", fontSize: "16px" }}>
                                                                     {setting.setting && setting.setting.currency}
-                                                                    {selectedVariant?.normal_price?.toFixed(setting.setting && setting.setting.decimal_point)}
+                                                                    {selectedVariant?.price?.toFixed(setting.setting && setting.setting.decimal_point)}
                                                                 </p>
                                                             </div>
                                                             : null}
@@ -606,8 +606,8 @@ const ProductDetails = () => {
                                                             {setting.setting && setting.setting.currency}
                                                             <p id='fa-rupee' className='m-0 text-success' style={{ fontSize: '20px' }}>
                                                                 {selectedVariant
-                                                                    ? (selectedVariant.normal_price - selectedVariant.normal_discounted_price).toFixed(setting.setting && setting.setting.decimal_point)
-                                                                    : (productdata.variants[0].normal_price - productdata.variants[0].normal_discounted_price).toFixed(setting.setting && setting.setting.decimal_point)
+                                                                    ? (selectedVariant.price - selectedVariant.discounted_price).toFixed(setting.setting && setting.setting.decimal_point)
+                                                                    : (productdata.variants[0].price - productdata.variants[0].discounted_price).toFixed(setting.setting && setting.setting.decimal_point)
                                                                 }
                                                             </p>
                                                         </div>
