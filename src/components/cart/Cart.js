@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../loader/Loader';
 import { useTranslation } from 'react-i18next';
 import { setProductSizes } from "../../model/reducer/productSizesReducer";
-import { addtoGuestCart, clearCartPromo, setCart, setCartProducts, setCartSubTotal, setGuestCartTotal } from "../../model/reducer/cartReducer";
+import { addtoGuestCart, clearCartPromo, setCart, setCartDiscount, setCartGst, setCartItemPrice, setCartProducts, setCartSubTotal, setGuestCartTotal } from "../../model/reducer/cartReducer";
 import Promo from "./Promo";
 import { RiCoupon2Fill } from 'react-icons/ri';
 import Login from '../login/Login';
@@ -41,6 +41,9 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
     const [showModal, setShowModal] = useState(false);
     // const [cartSubTotal, setCartSubTotal] = useState(0);
     // console.log("Cart SideBar Open State ->", isCartSidebarOpen);
+    const [guestCartItemsPrice, setGuestCartItemsPrice] = useState(0);
+    const [guestCartDiscount, setGuestCartDiscount] = useState(0);
+    const [guestCartGst, setGuestCartGst] = useState(0);
     useEffect(() => {
         if (sizes.sizes === null || sizes.status === 'loading') {
             if (city.city !== null && cart.cart !== null) {
@@ -117,6 +120,11 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                 dispatch(setCartSubTotal({ data: result?.data?.sub_total }));
                 dispatch(setCartProducts({ data: productsData }));
                 // setCartSubTotal(result?.data?.sub_total);
+
+                dispatch(setCartItemPrice({ data: result?.data?.items_price }));
+                dispatch(setCartDiscount({ data: result?.data?.discount }));
+                dispatch(setCartGst({ data: result?.data?.gst }));
+
                 setCartSidebarData(result?.data?.cart);
             } else if (result.message == "No item(s) found in users cart") {
                 setCartSidebarData([]);
@@ -139,7 +147,10 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
             if (result.status == 1) {
                 setCartSidebarData(result.data.cart);
                 setGuestCartSubTotal(result.data.sub_total);
-                
+                setGuestCartDiscount(result.data.discount);
+                setGuestCartItemsPrice(result.data.items_price);
+                setGuestCartGst(result.data.gst);
+
                 // dispatch(addGuestCartTotal({ data: result.data.sub_total }));
             }
         } catch (e) {
@@ -150,39 +161,83 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
 
 
     //Add to Cart
-    const addtoCart = async (product_id, product_variant_id, qty) => {
-        await api.addToCart(user?.jwtToken, product_id, product_variant_id, qty)
-            .then(response => response.json())
-            .then(async (result) => {
-                if (result.status === 1) {
-                    // toast.success(result.message);
-                    dispatch(setCartSubTotal({ data: result?.sub_total ? result?.sub_total : 0 }));
-                    const updatedCartProducts = cartSidebarData?.map(product => {
-                        if ((product.product_id == product_id) && (product?.product_variant_id == product_variant_id)) {
-                            return { ...product, qty: qty };
-                        } else {
-                            return product;
-                        }
-                    });
-                    setCartSidebarData(updatedCartProducts);
-                    const updatedProducts = cart?.cartProducts?.map((product) => {
-                        if ((product?.product_id == product_id) && (product?.product_variant_id == product_variant_id)) {
-                            return { ...product, qty: qty };
-                        } else {
-                            return product;
-                        }
-                    });
-                    dispatch(setCartProducts({ data: updatedProducts }));
+    // const addtoCart = async (product_id, product_variant_id, qty) => {
+    //     await api.addToCart(user?.jwtToken, product_id, product_variant_id, qty)
+    //         .then(response => response.json())
+    //         .then(async (result) => {
+    //             if (result.status === 1) {
+    //                 // toast.success(result.message);
+    //                 dispatch(setCartSubTotal({ data: result?.sub_total ? result?.sub_total : 0 }));
+    //                 const updatedCartProducts = cartSidebarData?.map(product => {
+    //                     if ((product.product_id == product_id) && (product?.product_variant_id == product_variant_id)) {
+    //                         return { ...product, qty: qty };
+    //                     } else {
+    //                         return product;
+    //                     }
+    //                 });
+    //                 setCartSidebarData(updatedCartProducts);
+    //                 const updatedProducts = cart?.cartProducts?.map((product) => {
+    //                     if ((product?.product_id == product_id) && (product?.product_variant_id == product_variant_id)) {
+    //                         return { ...product, qty: qty };
+    //                     } else {
+    //                         return product;
+    //                     }
+    //                 });
+    //                 dispatch(setCartProducts({ data: updatedProducts }));
 
-                } else if (result.status === 0) {
-                    setisLoader(false);
-                }
-                else {
-                    setisLoader(false);
-                    toast.error(result.message);
-                }
-            });
+    //             } else if (result.status === 0) {
+    //                 setisLoader(false);
+    //             }
+    //             else {
+    //                 setisLoader(false);
+    //                 toast.error(result.message);
+    //             }
+    //         });
+    // };
+
+
+    const addtoCart = async (product_id, product_variant_id, qty) => {
+        try {
+            const response = await api.addToCart(user?.jwtToken, product_id, product_variant_id, qty);
+            const result = await response.json();
+
+            if (result.status === 1) {
+                // Update the subtotal immediately if available in the response
+                dispatch(setCartSubTotal({ data: result?.sub_total || 0 }));
+
+                // Optimistically update the cart sidebar data
+                const updatedCartProducts = cartSidebarData?.map(product => {
+                    if (product.product_id === product_id && product.product_variant_id === product_variant_id) {
+                        return { ...product, qty }; // Update the quantity
+                    }
+                    return product;
+                });
+                setCartSidebarData(updatedCartProducts);
+
+                const updatedProducts = cart?.cartProducts?.map(product => {
+                    if (product.product_id === product_id && product.product_variant_id === product_variant_id) {
+                        return { ...product, qty }; // Update the quantity
+                    }
+                    return product;
+                });
+                dispatch(setCartProducts({ data: updatedProducts }));
+
+                // Fetch the full cart data to ensure accuracy for GST, discounts, etc.
+                await fetchCartData();
+            } else if (result.status === 0) {
+                setisLoader(false);
+            } else {
+                setisLoader(false);
+                toast.error(result.message);
+            }
+        } catch (error) {
+            console.error("Error adding to cart:", error);
+            setisLoader(false);
+        }
     };
+
+
+
 
     //remove from Cart
     const removefromCart = async (product_id, product_variant_id) => {
@@ -263,11 +318,12 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                     return product;
                 }
             });
-
+            
             computeSubTotal(updatedCartProducts);
 
             setCartSidebarData(updatedCartProducts);
             dispatch(addtoGuestCart({ data: updatedProducts }));
+            fetchGuestCart();
         } else {
             const productData = { product_id: productId, product_variant_id: productVariantId, qty: Qty };
             dispatch(addtoGuestCart({ data: [...cart?.guestCart, productData] }));
@@ -528,6 +584,39 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                                         : (
                                             <>
                                                 <div className='summary'>
+                                                    <div className='d-flex justify-content-between'>
+                                                        <span>Item Price</span>
+                                                        <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
+                                                            {setting.setting && setting.setting.currency}
+                                                            <span>
+                                                                {cart?.isGuest === false
+                                                                    ? (cart?.cartItemPrice?.toFixed(setting.setting?.decimal_point))
+                                                                    : guestCartItemsPrice?.toFixed(setting?.setting?.decimal_point)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='d-flex justify-content-between'>
+                                                        <span>Discount</span>
+                                                        <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
+                                                            {setting.setting && setting.setting.currency}
+                                                            <span>
+                                                                {cart?.isGuest === false
+                                                                    ? (cart?.cartDiscount?.toFixed(setting.setting?.decimal_point))
+                                                                    : guestCartDiscount?.toFixed(setting?.setting?.decimal_point)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='d-flex justify-content-between'>
+                                                        <span>Gst</span>
+                                                        <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
+                                                            {setting.setting && setting.setting.currency}
+                                                            <span>
+                                                                {cart?.isGuest === false
+                                                                    ? (cart?.cartGst?.toFixed(setting.setting?.decimal_point))
+                                                                    : guestCartGst?.toFixed(setting?.setting?.decimal_point)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                     <div className='d-flex justify-content-between'>
                                                         <span>{t("sub_total")}</span>
                                                         <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
