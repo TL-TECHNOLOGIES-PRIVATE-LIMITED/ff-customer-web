@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../loader/Loader';
 import { useTranslation } from 'react-i18next';
 import { setProductSizes } from "../../model/reducer/productSizesReducer";
-import { addtoGuestCart, clearCartPromo, setCart, setCartProducts, setCartSubTotal, setGuestCartTotal } from "../../model/reducer/cartReducer";
+import { addtoGuestCart, clearCartPromo, setCart, setCartDiscount, setCartGst, setCartItemPrice, setCartProducts, setCartSubTotal, setGuestCartTotal } from "../../model/reducer/cartReducer";
 import Promo from "./Promo";
 import { RiCoupon2Fill } from 'react-icons/ri';
 import Login from '../login/Login';
@@ -41,6 +41,10 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
     const [showModal, setShowModal] = useState(false);
     // const [cartSubTotal, setCartSubTotal] = useState(0);
     // console.log("Cart SideBar Open State ->", isCartSidebarOpen);
+
+    const [guestCartItemsPrice, setGuestCartItemsPrice] = useState(0);
+    const [guestCartDiscount, setGuestCartDiscount] = useState(0);
+    const [guestCartGst, setGuestCartGst] = useState(0);
     useEffect(() => {
         if (sizes.sizes === null || sizes.status === 'loading') {
             if (city.city !== null && cart.cart !== null) {
@@ -117,6 +121,11 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                 dispatch(setCartSubTotal({ data: result?.data?.sub_total }));
                 dispatch(setCartProducts({ data: productsData }));
                 // setCartSubTotal(result?.data?.sub_total);
+
+                dispatch(setCartItemPrice({ data: result?.data?.items_price }));
+                dispatch(setCartDiscount({ data: result?.data?.discount }));
+                dispatch(setCartGst({ data: result?.data?.gst }));
+
                 setCartSidebarData(result?.data?.cart);
             } else if (result.message == "No item(s) found in users cart") {
                 setCartSidebarData([]);
@@ -140,6 +149,10 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                 setCartSidebarData(result.data.cart);
                 setGuestCartSubTotal(result.data.sub_total);
                 
+                setGuestCartDiscount(result.data.discount);
+                setGuestCartItemsPrice(result.data.items_price);
+                setGuestCartGst(result.data.gst);
+
                 // dispatch(addGuestCartTotal({ data: result.data.sub_total }));
             }
         } catch (e) {
@@ -156,6 +169,10 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
             .then(async (result) => {
                 if (result.status === 1) {
                     // toast.success(result.message);
+                    dispatch(setCartItemPrice({ data: result?.items_price_total }));
+                    dispatch(setCartDiscount({ data: result?.discount }));
+                    dispatch(setCartGst({ data: result?.gst_total })); 
+                    
                     dispatch(setCartSubTotal({ data: result?.sub_total ? result?.sub_total : 0 }));
                     const updatedCartProducts = cartSidebarData?.map(product => {
                         if ((product.product_id == product_id) && (product?.product_variant_id == product_variant_id)) {
@@ -172,7 +189,9 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                             return product;
                         }
                     });
+                    
                     dispatch(setCartProducts({ data: updatedProducts }));
+                    
 
                 } else if (result.status === 0) {
                     setisLoader(false);
@@ -198,6 +217,9 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                         }
                     });
                     dispatch(setCartProducts({ data: updatedCartProducts ? updatedCartProducts : [] }));
+                    dispatch(setCartItemPrice({ data: result?.items_price_total }));
+                    dispatch(setCartDiscount({ data: result?.discount }));
+                    dispatch(setCartGst({ data: result?.gst_total })); 
                     dispatch(setCartSubTotal({ data: result?.sub_total }));
                     const updatedProducts = cartSidebarData?.filter(product => {
                         if (product.product_variant_id != product_variant_id) {
@@ -279,7 +301,7 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
             prev += (curr.discounted_price !== 0 ? curr.discounted_price * curr.qty : curr.price * curr.qty);
             return prev;
         }, 0);
-        // setGuestCartSubTotal(subTotal);
+        setGuestCartSubTotal(subTotal);
         dispatch(setGuestCartTotal({ data: subTotal }))
     };
 
@@ -529,8 +551,54 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                                             <>
                                                 <div className='summary'>
                                                     <div className='d-flex justify-content-between'>
-                                                        <span>{t("sub_total")}</span>
+                                                        <span>Item Price</span>
                                                         <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
+                                                            {setting.setting && setting.setting.currency}
+                                                            <span>
+                                                                {cart?.isGuest === false
+                                                                    ? (cart?.cartItemPrice?.toFixed(setting.setting?.decimal_point))
+                                                                    : guestCartItemsPrice?.toFixed(setting?.setting?.decimal_point)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='d-flex justify-content-between'>
+                                                        <span>Discount</span>
+                                                        <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
+                                                            {setting.setting && setting.setting.currency}
+                                                            <span> 
+                                                                {cart?.isGuest === false
+                                                                    ? (cart?.cartDiscount?.toFixed(setting.setting?.decimal_point))
+                                                                    : guestCartDiscount?.toFixed(setting?.setting?.decimal_point)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='d-flex justify-content-between'>
+                                                        <span>Total</span>
+                                                        <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
+                                                            {setting.setting && setting.setting.currency}
+                                                            <span> 
+                                                                {cart?.isGuest === false
+                                                                    ? (cart?.cartItemPrice - cart?.cartDiscount).toFixed(setting.setting?.decimal_point)
+                                                                    : guestCartDiscount?.toFixed(setting?.setting?.decimal_point)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='d-flex justify-content-between'>
+                                                        <span>Gst</span>
+                                                        <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
+                                                            {setting.setting && setting.setting.currency}
+                                                            <span>
+                                                                {cart?.isGuest === false
+                                                                    ? (cart?.cartGst?.toFixed(setting.setting?.decimal_point))
+                                                                    : guestCartGst?.toFixed(setting?.setting?.decimal_point)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div className='summary'>
+                                                    <div className='d-flex justify-content-between'>
+                                                        <span>{t("sub_total")}</span>
+                                                        <div className='d-flex align-items-center' style={{ fontSize: "18px" }}>
                                                             {setting.setting && setting.setting.currency}
                                                             <span>{cart?.isGuest === false ?
                                                                 (cart?.promo_code?.discount ?

@@ -12,7 +12,7 @@ import { RiCoupon2Fill, RiDeleteBinLine } from 'react-icons/ri';
 import Loader from '../loader/Loader';
 import Promo from './Promo';
 import { useTranslation } from 'react-i18next';
-import { addtoGuestCart, clearCartPromo, setCart, setCartProducts, setCartSubTotal } from '../../model/reducer/cartReducer';
+import { addtoGuestCart, clearCartPromo, setCart, setCartDiscount, setCartGst, setCartItemPrice, setCartProducts, setCartSubTotal } from '../../model/reducer/cartReducer';
 import { ValidateNoInternet } from '../../utils/NoInternetValidator';
 import { MdSignalWifiConnectedNoInternet0 } from 'react-icons/md';
 
@@ -60,6 +60,10 @@ const ViewCart = () => {
                         dispatch(setCart({ data: result }));
                         dispatch(setCartSubTotal({ data: result?.data?.sub_total }));
                         dispatch(setCartProducts({ data: productsData }));
+
+                        dispatch(setCartItemPrice({ data: result?.data?.items_price }));
+                        dispatch(setCartDiscount({ data: result?.data?.discount }));
+                        dispatch(setCartGst({ data: result?.data?.gst }));
                     }
 
                 })
@@ -124,7 +128,11 @@ const ViewCart = () => {
                 if (result.status === 1) {
                     // toast.success(result.message);
                     dispatch(clearCartPromo());
+                    dispatch(setCartItemPrice({ data: result?.items_price_total }));
+                    dispatch(setCartDiscount({ data: result?.discount }));
+                    dispatch(setCartGst({ data: result?.gst_total })); 
                     dispatch(setCartSubTotal({ data: result?.sub_total ? result?.sub_total : 0 }));
+
                     const updatedCartProducts = cartProducts?.map(product => {
                         if ((product.product_id == product_id) && (product?.product_variant_id == product_variant_id)) {
                             return { ...product, qty: qty };
@@ -165,6 +173,9 @@ const ViewCart = () => {
                             return product;
                         }
                     });
+                    dispatch(setCartItemPrice({ data: result?.items_price_total }));
+                    dispatch(setCartDiscount({ data: result?.discount }));
+                    dispatch(setCartGst({ data: result?.gst_total })); 
                     dispatch(setCartProducts({ data: updatedCartProducts ? updatedCartProducts : [] }));
                     dispatch(setCartSubTotal({ data: result?.sub_total }));
                     const updatedProducts = cartProducts?.filter(product => {
@@ -241,6 +252,10 @@ const ViewCart = () => {
         console.log(subTotal);
         setGuestCartSubTotal(subTotal);
     };
+
+
+
+    
     const RemoveFromGuestCart = (productVariantId) => {
         const updatedProducts = cart?.guestCart?.filter((p) => p.product_variant_id != productVariantId);
         const updatedSideBarProducts = cartProducts.filter((p) => p.product_variant_id != productVariantId);
@@ -486,7 +501,7 @@ const ViewCart = () => {
                                                                         {setting.setting && setting.setting.currency}
                                                                         <span>{
                                                                             cart?.isGuest === false ?
-                                                                                (cart?.cartSubTotal)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                (cart?.cartItemPrice)?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                                 :
                                                                                 guestCartItemsPrice?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                         }</span>
@@ -499,9 +514,22 @@ const ViewCart = () => {
                                                                         {setting.setting && setting.setting.currency}
                                                                         <span>{
                                                                             cart?.isGuest === false ?
-                                                                                (cart?.cartSubTotal)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                (cart?.cartDiscount)?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                                 :
                                                                                 guestCartDiscount?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                        }</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div className='d-flex justify-content-between'>
+                                                                    <span>Total</span>
+                                                                    <div className='d-flex align-items-center'>
+                                                                        -&nbsp;
+                                                                        {setting.setting && setting.setting.currency}
+                                                                        <span>{
+                                                                            cart?.isGuest === false ?
+                                                                                (cart?.cartItemPrice-cart?.cartDiscount)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                :
+                                                                                guestCartItemsPrice-guestCartDiscount?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                         }</span>
                                                                     </div>
                                                                 </div>
@@ -512,13 +540,13 @@ const ViewCart = () => {
                                                                         {setting.setting && setting.setting.currency}
                                                                         <span>{
                                                                             cart?.isGuest === false ?
-                                                                                (cart?.cartSubTotal)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                (cart?.cartGst)?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                                 :
                                                                                 guestCartGst?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                         }</span>
                                                                     </div>
                                                                 </div>
-                                                                <div  className='d-flex justify-content-between subtotal'>
+                                                                <div className='d-flex justify-content-between subtotal'>
                                                                     <span>{t("sub_total")}</span>
                                                                     <div className='d-flex align-items-center'>
                                                                         {setting.setting && setting.setting.currency}
