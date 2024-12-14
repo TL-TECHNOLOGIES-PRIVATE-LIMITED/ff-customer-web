@@ -86,7 +86,7 @@ const ViewCart = () => {
         if (location.pathname == "/cart" && cart?.isGuest === true) {
             fetchGuestCart();
         }
-    }, [guestCartSubTotal]);
+    }, []);
 
     const fetchGuestCart = async () => {
         setisLoader(true);
@@ -294,7 +294,7 @@ const ViewCart = () => {
             {!isNetworkError ?
                 <section id='viewcart' className='viewcart'>
                     <div className='cover'>
-                        <img src={coverImg} onError={placeHolderImage} className='img-fluid' alt="cover"></img>
+                        {/* <img src={coverImg} onError={placeHolderImage} className='img-fluid' alt="cover"></img> */}
                         <div className='title'>
                             <h3>{t("cart")}</h3>
                             <span><Link to='/' className='text-light text-decoration-none'>{t("home")} / </Link></span><span className='active'>{t('cart')}</span>
@@ -523,13 +523,13 @@ const ViewCart = () => {
                                                                 <div className='d-flex justify-content-between'>
                                                                     <span>Total</span>
                                                                     <div className='d-flex align-items-center'>
-                                                                        -&nbsp;
+                                                                        &nbsp;
                                                                         {setting.setting && setting.setting.currency}
                                                                         <span>{
                                                                             cart?.isGuest === false ?
                                                                                 (cart?.cartItemPrice-cart?.cartDiscount)?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                                 :
-                                                                                guestCartItemsPrice-guestCartDiscount?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                (guestCartItemsPrice-guestCartDiscount)?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                         }</span>
                                                                     </div>
                                                                 </div>
