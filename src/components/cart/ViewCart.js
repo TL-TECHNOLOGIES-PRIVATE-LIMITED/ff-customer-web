@@ -294,7 +294,7 @@ const ViewCart = () => {
             {!isNetworkError ?
                 <section id='viewcart' className='viewcart'>
                     <div className='cover'>
-                        {/* <img src={coverImg} onError={placeHolderImage} className='img-fluid' alt="cover"></img> */}
+                        <img src={coverImg} onError={placeHolderImage} className='img-fluid' alt="cover"></img>
                         <div className='title'>
                             <h3>{t("cart")}</h3>
                             <span><Link to='/' className='text-light text-decoration-none'>{t("home")} / </Link></span><span className='active'>{t('cart')}</span>
@@ -495,8 +495,8 @@ const ViewCart = () => {
                                                         </div>)
                                                         : (
                                                             <div className='summary'>
-                                                                <div className='d-flex justify-content-between'>
-                                                                    <span>Item price</span>
+                                                                <div className='d-flex justify-content-between other-price'>
+                                                                    <span>Item price <span>(without tax)</span></span>
                                                                     <div className='d-flex align-items-center'>
                                                                         {setting.setting && setting.setting.currency}
                                                                         <span>{
@@ -507,7 +507,7 @@ const ViewCart = () => {
                                                                         }</span>
                                                                     </div>
                                                                 </div>
-                                                                <div className='d-flex justify-content-between'>
+                                                                <div className='d-flex justify-content-between other-price'>
                                                                     <span>Discount</span>
                                                                     <div className='d-flex align-items-center'>
                                                                         -&nbsp;
@@ -520,7 +520,7 @@ const ViewCart = () => {
                                                                         }</span>
                                                                     </div>
                                                                 </div>
-                                                                <div className='d-flex justify-content-between'>
+                                                                <div className='d-flex justify-content-between other-price'>
                                                                     <span>Total</span>
                                                                     <div className='d-flex align-items-center'>
                                                                         &nbsp;
@@ -533,7 +533,7 @@ const ViewCart = () => {
                                                                         }</span>
                                                                     </div>
                                                                 </div>
-                                                                <div className='d-flex justify-content-between'>
+                                                                <div className='d-flex justify-content-between other-price '>
                                                                     <span>GST</span>
                                                                     <div className='d-flex align-items-center'>
                                                                         +&nbsp;

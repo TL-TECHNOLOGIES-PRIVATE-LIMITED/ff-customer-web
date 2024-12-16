@@ -3,7 +3,10 @@
 }
 
 .subtotal {
- font-size: larger
+ font-size: large
+}
+.other-price{
+  font-size:small
 }
 
 .cart-sidebar-container .empty-cart {

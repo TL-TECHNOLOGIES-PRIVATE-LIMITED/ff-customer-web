@@ -148,7 +148,7 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
             if (result.status == 1) {
                 setCartSidebarData(result.data.cart);
                 setGuestCartSubTotal(result.data.sub_total);
-                
+
                 setGuestCartDiscount(result.data.discount);
                 setGuestCartItemsPrice(result.data.items_price);
                 setGuestCartGst(result.data.gst);
@@ -171,8 +171,8 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                     // toast.success(result.message);
                     dispatch(setCartItemPrice({ data: result?.items_price_total }));
                     dispatch(setCartDiscount({ data: result?.discount }));
-                    dispatch(setCartGst({ data: result?.gst_total })); 
-                    
+                    dispatch(setCartGst({ data: result?.gst_total }));
+
                     dispatch(setCartSubTotal({ data: result?.sub_total ? result?.sub_total : 0 }));
                     const updatedCartProducts = cartSidebarData?.map(product => {
                         if ((product.product_id == product_id) && (product?.product_variant_id == product_variant_id)) {
@@ -189,9 +189,9 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                             return product;
                         }
                     });
-                    
+
                     dispatch(setCartProducts({ data: updatedProducts }));
-                    
+
 
                 } else if (result.status === 0) {
                     setisLoader(false);
@@ -219,7 +219,7 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                     dispatch(setCartProducts({ data: updatedCartProducts ? updatedCartProducts : [] }));
                     dispatch(setCartItemPrice({ data: result?.items_price_total }));
                     dispatch(setCartDiscount({ data: result?.discount }));
-                    dispatch(setCartGst({ data: result?.gst_total })); 
+                    dispatch(setCartGst({ data: result?.gst_total }));
                     dispatch(setCartSubTotal({ data: result?.sub_total }));
                     const updatedProducts = cartSidebarData?.filter(product => {
                         if (product.product_variant_id != product_variant_id) {
@@ -551,7 +551,7 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                                             <>
                                                 <div className='summary'>
                                                     <div className='d-flex justify-content-between'>
-                                                        <span>Item Price</span>
+                                                        <span>Item Price <span>(without tax)</span></span>
                                                         <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
                                                             {setting.setting && setting.setting.currency}
                                                             <span>
@@ -564,8 +564,9 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                                                     <div className='d-flex justify-content-between'>
                                                         <span>Discount</span>
                                                         <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
+                                                            -&nbsp;
                                                             {setting.setting && setting.setting.currency}
-                                                            <span> 
+                                                            <span>
                                                                 {cart?.isGuest === false
                                                                     ? (cart?.cartDiscount?.toFixed(setting.setting?.decimal_point))
                                                                     : guestCartDiscount?.toFixed(setting?.setting?.decimal_point)}
@@ -576,16 +577,17 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                                                         <span>Total</span>
                                                         <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
                                                             {setting.setting && setting.setting.currency}
-                                                            <span> 
+                                                            <span>
                                                                 {cart?.isGuest === false
                                                                     ? (cart?.cartItemPrice - cart?.cartDiscount).toFixed(setting.setting?.decimal_point)
-                                                                    : guestCartDiscount?.toFixed(setting?.setting?.decimal_point)}
+                                                                    : (guestCartItemsPrice - guestCartDiscount)?.toFixed(setting?.setting?.decimal_point)}
                                                             </span>
                                                         </div>
                                                     </div>
                                                     <div className='d-flex justify-content-between'>
                                                         <span>Gst</span>
                                                         <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
+                                                        +&nbsp;
                                                             {setting.setting && setting.setting.currency}
                                                             <span>
                                                                 {cart?.isGuest === false
@@ -594,8 +596,8 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    </div>
-                                                    <div className='summary'>
+                                                </div>
+                                                <div className='summary'>
                                                     <div className='d-flex justify-content-between'>
                                                         <span>{t("sub_total")}</span>
                                                         <div className='d-flex align-items-center' style={{ fontSize: "18px" }}>
