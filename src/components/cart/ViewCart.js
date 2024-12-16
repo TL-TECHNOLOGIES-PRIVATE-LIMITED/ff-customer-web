@@ -97,10 +97,6 @@ const ViewCart = () => {
             const result = await response.json();
             if (result.status == 1) {
                 setViewCartProducts(result.data.cart);
-                console.log(result?.data?.cart, 'cart');
-                console.log(result?.data, 'sub_total');
-
-
                 setGuestCartSubTotal(result.data.sub_total);
                 setGuestCartItemsPrice(result.data.items_price); // Items price
                 setGuestCartDiscount(result.data.discount); // Discount
@@ -245,11 +241,9 @@ const ViewCart = () => {
     };
     const computeSubTotal = (products) => {
         const subTotal = products.reduce((prev, curr) => {
-            console.log(prev, curr);
             prev += (curr.discounted_price !== 0 ? curr.discounted_price * curr.qty : curr.price * curr.qty);
             return prev;
         }, 0);
-        console.log(subTotal);
         setGuestCartSubTotal(subTotal);
     };
 
