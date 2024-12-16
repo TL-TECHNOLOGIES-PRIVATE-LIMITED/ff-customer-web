@@ -585,9 +585,13 @@ const ProductDetails = () => {
                                                     <div className='d-flex flex-column gap-2 align-items-start my-1'>
                                                         {(selectedVariant?.price && (selectedVariant?.discounted_price !== 0)) && (selectedVariant?.price !== selectedVariant?.discounted_price) ?
                                                             <div>
-                                                                <p className='fw-normal text-decoration-line-through' style={{ color: "var(--sub-text-color)", fontSize: "18px" }}>
+                                                                
+                                                                <p className='fw-normal ' style={{ color: "var(--sub-text-color)", fontSize: "18px" }}>
+                                                                <span className="text-muted" style={{ fontSize: '20px', fontWeight: 'bold' }}>MRP :&nbsp;</span>
+                                                                <span className='text-decoration-line-through'>
                                                                     {setting.setting && setting.setting.currency}
                                                                     {selectedVariant?.price?.toFixed(setting.setting && setting.setting.decimal_point)}
+                                                                    </span>
                                                                 </p>
                                                             </div>
                                                             : null}
