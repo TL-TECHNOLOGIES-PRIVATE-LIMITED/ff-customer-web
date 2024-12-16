@@ -31,6 +31,7 @@ const ViewCart = () => {
     const setting = useSelector(state => (state.setting));
     const cartItems = cart?.cart?.data;
     const [productSizes, setproductSizes] = useState(null);
+    const [refreshGuestCart, setRefreshGuestCart] = useState(false);
     const [iscartEmpty, setiscartEmpty] = useState(false);
     const [isLoader, setisLoader] = useState(false);
     const [showPromoOffcanvas, setShowPromoOffcanvas] = useState(false);
@@ -87,6 +88,16 @@ const ViewCart = () => {
             fetchGuestCart();
         }
     }, []);
+
+    //refresh guest cart 
+
+
+    useEffect(() => {
+        if (refreshGuestCart) {
+            fetchGuestCart();
+            setRefreshGuestCart(false);
+        }
+    }, [refreshGuestCart]);
 
     const fetchGuestCart = async () => {
         setisLoader(true);
@@ -238,6 +249,7 @@ const ViewCart = () => {
             const productData = { product_id: productId, product_variant_id: productVariantId, qty: Qty };
             dispatch(addtoGuestCart({ data: [...cart?.guestCart, productData] }));
         }
+        setRefreshGuestCart(true); 
     };
     const computeSubTotal = (products) => {
         const subTotal = products.reduce((prev, curr) => {
@@ -259,6 +271,7 @@ const ViewCart = () => {
             setiscartEmpty(true);
         }
         dispatch(addtoGuestCart({ data: updatedProducts }));
+        setRefreshGuestCart(true); 
     };
 
     const handleValidateAddExistingGuestProduct = (productQuantity, product, quantity) => {

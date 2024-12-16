@@ -39,6 +39,7 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
     const [cartSidebarData, setCartSidebarData] = useState([]);
     const [guestCartSubTotal, setGuestCartSubTotal] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [refreshGuestCart, setRefreshGuestCart] = useState(false);
     // const [cartSubTotal, setCartSubTotal] = useState(0);
     // console.log("Cart SideBar Open State ->", isCartSidebarOpen);
 
@@ -160,6 +161,12 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
         }
         setisLoader(false);
     };
+    useEffect(() => {
+        if (refreshGuestCart) {
+            fetchGuestCart(); 
+            setRefreshGuestCart(false);
+        }
+    }, [refreshGuestCart]);
 
 
     //Add to Cart
@@ -294,6 +301,7 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
             const productData = { product_id: productId, product_variant_id: productVariantId, qty: Qty };
             dispatch(addtoGuestCart({ data: [...cart?.guestCart, productData] }));
         }
+        setRefreshGuestCart(true);
     };
 
     const computeSubTotal = (products) => {
@@ -311,6 +319,7 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
         computeSubTotal(updatedSideBarProducts);
         setCartSidebarData(updatedSideBarProducts);
         dispatch(addtoGuestCart({ data: updatedProducts }));
+        setRefreshGuestCart(true);
     };
 
     const handleValidateAddExistingGuestProduct = (productQuantity, product, quantity) => {
