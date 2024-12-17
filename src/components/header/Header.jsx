@@ -612,7 +612,7 @@ const Header = () => {
                                     <li
                                         className={curr_url.pathname == "/contact" ? "active-link" : ""}
                                         onClick={() => navigate('/contact')}
-                                    > <a>Contanct Us</a></li>
+                                    > <a>Contact Us</a></li>
                                 </ul>
                             </div>
 

@@ -300,14 +300,14 @@ const ViewCart = () => {
         <>
             {!isNetworkError ?
                 <section id='viewcart' className='viewcart'>
-                    <div className='cover'>
+                    {/* <div className='cover'>
                         <img src={coverImg} onError={placeHolderImage} className='img-fluid' alt="cover"></img>
                         <div className='title'>
                             <h3>{t("cart")}</h3>
                             <span><Link to='/' className='text-light text-decoration-none'>{t("home")} / </Link></span><span className='active'>{t('cart')}</span>
                         </div>
 
-                    </div>
+                    </div> */}
 
                     <div className="view-cart-container">
                         <div className='container'>

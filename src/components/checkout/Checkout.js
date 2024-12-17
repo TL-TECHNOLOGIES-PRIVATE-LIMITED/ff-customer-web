@@ -1211,25 +1211,6 @@ const Checkout = () => {
                                                                     <div className='d-flex justify-content-between'>
                                                                         <span>{t("sub_total")}</span>
                                                                         <div className='d-flex align-items-center'>
-                                                                            <span>{setting.setting && setting.setting.currency}   {(cart?.checkout?.items_price)?.toFixed(setting.setting && setting.setting.decimal_point)}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className='d-flex justify-content-between'>
-                                                                        <span>{t("discount")}</span>
-                                                                        <div className='d-flex align-items-center'>
-                                                                            <span>{setting.setting && setting.setting.currency}   {(cart?.checkout?.discount)?.toFixed(setting.setting && setting.setting.decimal_point)}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                     <div className='d-flex justify-content-between'>
-                                                                        <span>{t("GST")}</span>
-                                                                        <div className='d-flex align-items-center'>
-                                                                            <span>{setting.setting && setting.setting.currency}   {(cart?.checkout?.gst)?.toFixed(setting.setting && setting.setting.decimal_point)}</span>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div className='d-flex justify-content-between'>
-                                                                        <span>{t("sub_total")}</span>
-                                                                        <div className='d-flex align-items-center'>
                                                                             <span>{setting.setting && setting.setting.currency}   {(cart?.checkout?.sub_total)?.toFixed(setting.setting && setting.setting.decimal_point)}</span>
                                                                         </div>
                                                                     </div>
