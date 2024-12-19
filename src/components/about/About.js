@@ -22,13 +22,13 @@ const About = () => {
                 )
                 : (
                     <>
-                        <div className='cover'>
+                        {/* <div className='cover'>
                             <img src={coverImg} className='img-fluid' alt="cover" onError={placeHolderImage}></img>
                             <div className='title'>
                                 <h3>{t("about_us")}</h3>
                                 <span> <Link to="/" className='text-light text-decoration-none'>{t("home")} /</Link> </span><span className='active'>{t("about_us")}</span>
                             </div>
-                        </div>
+                        </div> */}
                         <div className='container'>
 
                             <div className='about-container' dangerouslySetInnerHTML={{ __html: setting.setting.about_us }}></div>

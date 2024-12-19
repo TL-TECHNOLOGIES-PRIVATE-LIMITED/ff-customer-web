@@ -916,13 +916,13 @@ const Checkout = () => {
                             </>
                             : null}
 
-                        <div className='cover'>
+                        {/* <div className='cover'>
                             <img src={coverImg} onError={placeHolderImage} className='img-fluid' alt="cover"></img>
                             <div className='title'>
                                 <h3>{t("checkout")}</h3>
                                 <span><Link to="/" className="text-white text-decoration-none">{t("home")} / </Link> </span><span className='active'>{t("checkout")}</span>
                             </div>
-                        </div>
+                        </div> */}
 
 
                         {!setting.payment_setting === null && !expectedTime === null

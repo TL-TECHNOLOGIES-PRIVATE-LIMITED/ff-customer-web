@@ -61,13 +61,13 @@ const ShopBySellersPage = () => {
     return (
         <>
             <section className='allSellersContainer'>
-                <div className='cover'>
+                {/* <div className='cover'>
                     <img src={coverImg} onError={placeHolderImage} className='img-fluid' alt="cover"></img>
                     <div className='page-heading'>
                         <h5>{t("sellers")}</h5>
                         <p><Link to="/" className='text-light text-decoration-none'>{t("home")} /</Link> <span>{t("sellers")}</span></p>
                     </div>
-                </div>
+                </div> */}
 
                 <div className='container' style={{ padding: "30px 0px" }}>
                     {loading ?

@@ -61,13 +61,13 @@ const FAQ = () => {
             {!isNetworkError ?
                 <section id='faq' className='faq'>
                     <>
-                        <div className='cover'>
+                        {/* <div className='cover'>
                             <img onError={placeHolderImage} src={coverImg} className='img-fluid' alt="cover"></img>
                             <div className='title'>
                                 <h3>{t("faq")}</h3>
                                 <span> <Link to="/" className='text-light text-decoration-none'>{t("home")} /</Link> </span><span className='active'>{t("faq")}</span>
                             </div>
-                        </div>
+                        </div> */}
 
                         {faqs === null ?
                             <Loader width="100%" height="600px" />

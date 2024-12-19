@@ -61,13 +61,13 @@ const BrandList = () => {
         <>
 
             <section className='allBrandsSlider'  >
-                <div className='cover'>
+                {/* <div className='cover'>
                     <img src={coverImg} onError={placeHolderImage} className='img-fluid' alt="cover"></img>
                     <div className='page-heading'>
                         <h5>{t("brands")}</h5>
                         <p><Link to="/" className='text-light text-decoration-none'>{t("home")} /</Link> <span>{t("brands")}</span></p>
                     </div>
-                </div>
+                </div> */}
 
                 <div className='container' style={{ padding: "30px 0" }}>
                     {loading ?

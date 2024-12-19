@@ -19,13 +19,13 @@ const Contact = () => {
             {setting.setting === null ? <Loader screen='full' />
                 : (
                     <>
-                        <div className='cover'>
+                        {/* <div className='cover'>
                             <img  onError={placeHolderImage} src={coverImg} className='img-fluid' alt="cover"></img>
                             <div className='title'>
                                 <h3>{t("contact_us")}</h3>
                                 <span> <Link to="/" className='text-light text-decoration-none'>{t("home")} /</Link> </span><span className='active'>{t("contact_us")}</span>
                             </div>
-                        </div>
+                        </div> */}
                         <div className='container'>
                             <div className='contact-wrapper'  dangerouslySetInnerHTML={{ __html: setting.setting.contact_us }}>
 

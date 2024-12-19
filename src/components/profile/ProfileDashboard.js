@@ -461,10 +461,10 @@ const ProfileDashboard = (props) => {
                             </div>
                         </div>
 
-                        <div className='cover'>
-                            <img src={coverImg} className='img-fluid' alt="cover"></img>
+                        <div className='mt-5 pt-5'>
+                            {/* <img src={coverImg} className='img-fluid' alt="cover"></img> */}
                         </div>
-                        <div className='container py-5'>
+                        <div className='container mt-5 pt-5 pb-5'>
                             <div className='content-container row'>
 
                                 <div className='sidebar hide-mobile-screen col-md-2 col-3'>

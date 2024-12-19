@@ -55,13 +55,13 @@ const ShopByCountriesPage = () => {
     return (
         <>
             <section className='allCountriesContainer'>
-                <div className='cover'>
+                {/* <div className='cover'>
                     <img src={coverImg} onError={placeHolderImage} className='img-fluid' alt="cover"></img>
                     <div className='page-heading'>
                         <h5>{t("countries")}</h5>
                         <p><Link to="/" className='text-light text-decoration-none'>{t("home")} /</Link> <span>{t("countries")}</span></p>
                     </div>
-                </div>
+                </div> */}
 
                 <div className='container' style={{ padding: "30px 0px" }}>
                     {loading ?

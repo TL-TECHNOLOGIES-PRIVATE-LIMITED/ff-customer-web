@@ -160,13 +160,13 @@ const OrderDetails = React.memo(() => {
         <>
             {!isNetworkError ?
                 <section className="order-details-page">
-                    <div className='cover'>
+                    {/* <div className='cover'>
                         <img src={coverImg} onError={placeHolderImage} className='img-fluid' alt="cover"></img>
                         <div className='page-heading'>
                             <h3>{t("order_details")}</h3>
                             <p><strong onClick={() => navigate('/')}>{t("home")}</strong> / <span> <span onClick={() => navigate('/profile/orders')}>{t("order")}</span> / {orderData?.id}</span></p>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="container">
                         <div className="row">

@@ -70,13 +70,13 @@ const Notification = () => {
 
       {!isNetworkError ?
         <div className='notification'>
-          <div className='cover'>
+          {/* <div className='cover'>
             <img src={coverImg} className='img-fluid' alt="cover"></img>
             <div className='title'>
               <h3>{t("notification")}</h3>
               <span><Link to="/" className='text-light text-decoration-none'>{t("home")} / </Link></span><span className='active'>{t("notification")}</span>
             </div>
-          </div>
+          </div> */}
           {notification === null
             ? (
               <Loader width="100%" height="500px" background={"var(--second-cards-color)"} />

@@ -16,7 +16,7 @@ const Policy = () => {
             {setting.setting === null ? <Loader screen='full' />
                 : (
                     <>
-                        <div className='cover'>
+                        {/* <div className='cover'>
                             <img src={coverImg} className='img-fluid' alt="cover"></img>
                             <div className='title'>
                                 <h3>{policy_type === 'Privacy_Policy'
@@ -38,7 +38,7 @@ const Policy = () => {
                                                 ? <span className='active'>{t("cancellation_policy")}</span>
                                                 : null}
                             </div>
-                        </div>
+                        </div> */}
                         <div className='container'>
                             {policy_type === 'Privacy_Policy'
                                 ? <div className='policy-container' dangerouslySetInnerHTML={{ __html: setting.setting.privacy_policy }}></div>
