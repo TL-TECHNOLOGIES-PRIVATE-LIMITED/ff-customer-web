@@ -585,35 +585,38 @@ const ProductDetails = () => {
                                                     <div className='d-flex flex-column gap-2 align-items-start my-1'>
                                                         {(selectedVariant?.price && (selectedVariant?.discounted_price !== 0)) && (selectedVariant?.price !== selectedVariant?.discounted_price) ?
                                                             <div>
-                                                                
+
                                                                 <p className='fw-normal ' style={{ color: "var(--sub-text-color)", fontSize: "18px" }}>
-                                                                <span className="text-muted" style={{ fontSize: '20px', fontWeight: 'bold' }}>MRP :&nbsp;</span>
-                                                                <span className='text-decoration-line-through'>
-                                                                    {setting.setting && setting.setting.currency}
-                                                                    {selectedVariant?.price?.toFixed(setting.setting && setting.setting.decimal_point)}
+                                                                    <span className="text-muted" style={{ fontSize: '20px', fontWeight: 'bold' }}>MRP :&nbsp;</span>
+                                                                    <span className='text-decoration-line-through'>
+                                                                        {setting.setting && setting.setting.currency}
+                                                                        {selectedVariant?.price?.toFixed(setting.setting && setting.setting.decimal_point)}
                                                                     </span>
                                                                 </p>
                                                             </div>
                                                             : null}
 
                                                         <div id="price-section" className='d-flex flex-row gap-2 align-items-center my-1'>
-                                                            {setting.setting && setting.setting.currency}<p id='fa-rupee' className='m-0'>{selectedVariant ? (selectedVariant.normal_discounted_price == 0 ? selectedVariant.price.toFixed(setting.setting && setting.setting.decimal_point) : selectedVariant.normal_discounted_price.toFixed(setting.setting && setting.setting.decimal_point)) : (productdata.variants[0].normal_discounted_price === 0 ? productdata.variants[0].price.toFixed(setting.setting && setting.setting.decimal_point) : productdata.variants[0].normal_discounted_price.toFixed(setting.setting && setting.setting.decimal_point))}&nbsp;<span style={{ color: '#dc2626' ,fontSize:'16px' }}>excl. GST</span></p>
+                                                            {setting.setting && setting.setting.currency}<p id='fa-rupee' className='m-0'>{selectedVariant ? (selectedVariant.normal_discounted_price == 0 ? selectedVariant.normal_price.toFixed(setting.setting && setting.setting.decimal_point) : selectedVariant.normal_discounted_price.toFixed(setting.setting && setting.setting.decimal_point)) : (productdata.variants[0].normal_discounted_price === 0 ? productdata.variants[0].normal_price.toFixed(setting.setting && setting.setting.decimal_point) : productdata.variants[0].normal_discounted_price.toFixed(setting.setting && setting.setting.decimal_point))}&nbsp;<span style={{ color: '#dc2626', fontSize: '16px' }}>excl. GST</span></p>
                                                         </div>
                                                         <div id="price-section" className='d-flex flex-row gap-2 align-items-center my-1'>
-                                                            {setting.setting && setting.setting.currency}<p id='fa-rupee' className='m-0'>{selectedVariant ? (selectedVariant.discounted_price == 0 ? selectedVariant.price.toFixed(setting.setting && setting.setting.decimal_point) : selectedVariant.discounted_price.toFixed(setting.setting && setting.setting.decimal_point)) : (productdata.variants[0].discounted_price === 0 ? productdata.variants[0].price.toFixed(setting.setting && setting.setting.decimal_point) : productdata.variants[0].discounted_price.toFixed(setting.setting && setting.setting.decimal_point))}&nbsp;<span style={{ color: '#16a34a' ,fontSize:'16px' }}>incl. GST</span></p>
+                                                            {setting.setting && setting.setting.currency}<p id='fa-rupee' className='m-0'>{selectedVariant ? (selectedVariant.discounted_price == 0 ? selectedVariant.price.toFixed(setting.setting && setting.setting.decimal_point) : selectedVariant.discounted_price.toFixed(setting.setting && setting.setting.decimal_point)) : (productdata.variants[0].discounted_price === 0 ? productdata.variants[0].price.toFixed(setting.setting && setting.setting.decimal_point) : productdata.variants[0].discounted_price.toFixed(setting.setting && setting.setting.decimal_point))}&nbsp;<span style={{ color: '#16a34a', fontSize: '16px' }}>incl. GST</span></p>
                                                         </div>
 
                                                         {/* total saved */}
-
                                                         <div className='d-flex flex-row gap-2 align-items-center text-success' style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                                                        {selectedVariant.discounted_price > 0 && (
+                                                             <>
                                                             <span className="text-muted" style={{ fontSize: '20px' }}>You save:</span>
-                                                            {setting.setting && setting.setting.currency}
-                                                            <p id='fa-rupee' className='m-0 text-success' style={{ fontSize: '20px' }}>
-                                                                {selectedVariant
-                                                                    ? (selectedVariant.price - selectedVariant.discounted_price).toFixed(setting.setting && setting.setting.decimal_point)
-                                                                    : (productdata.variants[0].price - productdata.variants[0].discounted_price).toFixed(setting.setting && setting.setting.decimal_point)
-                                                                }
-                                                            </p>
+                                                                    {setting.setting && setting.setting.currency}
+                                                                    <p id='fa-rupee' className='m-0 text-success' style={{ fontSize: '20px' }}>
+                                                                        {selectedVariant
+                                                                            ? (selectedVariant.price - selectedVariant.discounted_price).toFixed(setting.setting && setting.setting.decimal_point)
+                                                                            : (productdata.variants[0].price - productdata.variants[0].discounted_price).toFixed(setting.setting && setting.setting.decimal_point)
+                                                                        }
+                                                                    </p>
+                                                                </>
+                                                            )}
                                                         </div>
 
 
