@@ -1,3 +1,28 @@
+/* addiitonal css */
+
+.save-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.savings-text {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+  color: green;
+  
+}
+
+.savings-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* :end */
+
+
 .cart-sidebar-container {
   padding: 20px;
 }
@@ -7,6 +32,9 @@
 }
 .other-price{
   font-size:small
+}
+.price-font{
+  font-size: medium
 }
 
 .cart-sidebar-container .empty-cart {

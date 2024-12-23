@@ -8,11 +8,12 @@ import { toast } from 'react-toastify';
 import EmptyCart from '../../utils/zero-state-screens/Empty_Cart.svg';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import coverImg from '../../utils/cover-img.jpg';
+import saveIcon from '../../utils/save_money.png';
 import { RiCoupon2Fill, RiDeleteBinLine } from 'react-icons/ri';
 import Loader from '../loader/Loader';
 import Promo from './Promo';
 import { useTranslation } from 'react-i18next';
-import { addtoGuestCart, clearCartPromo, setCart, setCartDiscount, setCartGst, setCartItemPrice, setCartProducts, setCartSubTotal } from '../../model/reducer/cartReducer';
+import { addtoGuestCart, clearCartPromo, setCart, setCartDiscount, setCartGst, setCartItemPrice, setCartProducts, setCartSubTotal, setTotalSaved } from '../../model/reducer/cartReducer';
 import { ValidateNoInternet } from '../../utils/NoInternetValidator';
 import { MdSignalWifiConnectedNoInternet0 } from 'react-icons/md';
 
@@ -41,6 +42,7 @@ const ViewCart = () => {
     const [guestCartItemsPrice, setGuestCartItemsPrice] = useState(0);
     const [guestCartDiscount, setGuestCartDiscount] = useState(0);
     const [guestCartGst, setGuestCartGst] = useState(0);
+    const [guestCartTotalSaved, setGuestCartTotalSaved] = useState(0);
 
     useEffect(() => {
         if (location.pathname == "/cart" && cart?.isGuest === false) {
@@ -65,6 +67,7 @@ const ViewCart = () => {
                         dispatch(setCartItemPrice({ data: result?.data?.items_price }));
                         dispatch(setCartDiscount({ data: result?.data?.discount }));
                         dispatch(setCartGst({ data: result?.data?.gst }));
+                        dispatch(setTotalSaved({ data: result?.data?.saved_amount }));
                     }
 
                 })
@@ -112,6 +115,7 @@ const ViewCart = () => {
                 setGuestCartItemsPrice(result.data.items_price); // Items price
                 setGuestCartDiscount(result.data.discount); // Discount
                 setGuestCartGst(result.data.gst); // GST
+                setGuestCartTotalSaved(result.data.saved_amount); // Saved amount
                 result?.data?.cart?.length > 0 ? setiscartEmpty(false) : setiscartEmpty(true);
             }
         } catch (e) {
@@ -137,8 +141,10 @@ const ViewCart = () => {
                     dispatch(clearCartPromo());
                     dispatch(setCartItemPrice({ data: result?.items_price_total }));
                     dispatch(setCartDiscount({ data: result?.discount }));
-                    dispatch(setCartGst({ data: result?.gst_total })); 
+                    dispatch(setCartGst({ data: result?.gst_total }));
                     dispatch(setCartSubTotal({ data: result?.sub_total ? result?.sub_total : 0 }));
+                    dispatch(setTotalSaved({ data: result?.saved_amount }));
+
 
                     const updatedCartProducts = cartProducts?.map(product => {
                         if ((product.product_id == product_id) && (product?.product_variant_id == product_variant_id)) {
@@ -182,9 +188,10 @@ const ViewCart = () => {
                     });
                     dispatch(setCartItemPrice({ data: result?.items_price_total }));
                     dispatch(setCartDiscount({ data: result?.discount }));
-                    dispatch(setCartGst({ data: result?.gst_total })); 
+                    dispatch(setCartGst({ data: result?.gst_total }));
                     dispatch(setCartProducts({ data: updatedCartProducts ? updatedCartProducts : [] }));
                     dispatch(setCartSubTotal({ data: result?.sub_total }));
+                    dispatch(setTotalSaved({ data: result?.saved_amount }));
                     const updatedProducts = cartProducts?.filter(product => {
                         if (product.product_variant_id != product_variant_id) {
                             return product;
@@ -249,7 +256,7 @@ const ViewCart = () => {
             const productData = { product_id: productId, product_variant_id: productVariantId, qty: Qty };
             dispatch(addtoGuestCart({ data: [...cart?.guestCart, productData] }));
         }
-        setRefreshGuestCart(true); 
+        setRefreshGuestCart(true);
     };
     const computeSubTotal = (products) => {
         const subTotal = products.reduce((prev, curr) => {
@@ -261,7 +268,7 @@ const ViewCart = () => {
 
 
 
-    
+
     const RemoveFromGuestCart = (productVariantId) => {
         const updatedProducts = cart?.guestCart?.filter((p) => p.product_variant_id != productVariantId);
         const updatedSideBarProducts = cartProducts.filter((p) => p.product_variant_id != productVariantId);
@@ -271,7 +278,7 @@ const ViewCart = () => {
             setiscartEmpty(true);
         }
         dispatch(addtoGuestCart({ data: updatedProducts }));
-        setRefreshGuestCart(true); 
+        setRefreshGuestCart(true);
     };
 
     const handleValidateAddExistingGuestProduct = (productQuantity, product, quantity) => {
@@ -534,9 +541,9 @@ const ViewCart = () => {
                                                                         {setting.setting && setting.setting.currency}
                                                                         <span>{
                                                                             cart?.isGuest === false ?
-                                                                                (cart?.cartItemPrice-cart?.cartDiscount)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                (cart?.cartItemPrice - cart?.cartDiscount)?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                                 :
-                                                                                (guestCartItemsPrice-guestCartDiscount)?.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                (guestCartItemsPrice - guestCartDiscount)?.toFixed(setting.setting && setting.setting.decimal_point)
                                                                         }</span>
                                                                     </div>
                                                                 </div>
@@ -590,8 +597,19 @@ const ViewCart = () => {
                                                                         {t("proceed_to_checkout")}
                                                                     </button>
                                                                 </div>
-
+ 
                                                             </div>)}
+                                                            <div className="d-flex justify-content-center mt-3 save-container">
+                                                                    {/* <img src={saveIcon} alt="Icon" className="savings-icon" /> */}
+                                                                    <span className="savings-text">
+                                                                        You made savings of {setting.setting && setting.setting.currency}
+                                                                        <span>
+                                                                            {cart?.isGuest === false
+                                                                                ? cart?.totalSaved?.toFixed(setting.setting?.decimal_point)
+                                                                                : guestCartTotalSaved?.toFixed(setting.setting?.decimal_point)}
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
                                                 </div>
                                             </div>
                                         </div>

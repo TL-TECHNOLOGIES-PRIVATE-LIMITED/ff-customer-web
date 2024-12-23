@@ -162,9 +162,11 @@ export const cartReducer = createSlice({
         },
         setCartGst: (state, action) => {
                         state.cartGst = action.payload.data;
-        }
-        
-    }
+        },
+        setTotalSaved: (state, action) => {
+            state.totalSaved = action.payload.data;
+        }   
+    },
 });
 
 export const {
@@ -184,6 +186,7 @@ export const {
     subGuestCartTotal,
     setCartItemPrice,
     setCartDiscount,
-    setCartGst
+    setCartGst,
+    setTotalSaved
 } = cartReducer.actions;
 export default cartReducer.reducer;

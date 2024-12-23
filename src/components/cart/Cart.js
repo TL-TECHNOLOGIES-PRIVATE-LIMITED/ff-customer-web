@@ -559,7 +559,7 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                                         : (
                                             <>
                                                 <div className='summary'>
-                                                    <div className='d-flex justify-content-between'>
+                                                    <div className='d-flex justify-content-between price-font'>
                                                         <span>Item Price <span>(without tax)</span></span>
                                                         <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
                                                             {setting.setting && setting.setting.currency}
@@ -570,7 +570,7 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div className='d-flex justify-content-between'>
+                                                    <div className='d-flex justify-content-between price-font'>
                                                         <span>Discount</span>
                                                         <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
                                                             -&nbsp;
@@ -582,7 +582,7 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div className='d-flex justify-content-between'>
+                                                    <div className='d-flex justify-content-between price-font' >
                                                         <span>Total</span>
                                                         <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
                                                             {setting.setting && setting.setting.currency}
@@ -593,9 +593,9 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div className='d-flex justify-content-between'>
+                                                    <div className='d-flex justify-content-between price-font'>
                                                         <span>Gst</span>
-                                                        <div className='d-flex align-items-center' style={{ fontSize: "14px" }}>
+                                                        <div className='d-flex align-items-center'>
                                                         +&nbsp;
                                                             {setting.setting && setting.setting.currency}
                                                             <span>
