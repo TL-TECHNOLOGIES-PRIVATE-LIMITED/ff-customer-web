@@ -806,17 +806,17 @@ const ProductDetails = () => {
                                                                     null
                                                                 }
                                                                 {productdata?.till_status == 2 ?
-                                                                    t("received")
+                                                                    t("placed")
                                                                     :
                                                                     null
                                                                 }
                                                                 {productdata?.till_status == 3 ?
-                                                                    t("processed")
+                                                                    t("confirmed")
                                                                     :
                                                                     null
                                                                 }
                                                                 {productdata?.till_status == 4 ?
-                                                                    t("shipped")
+                                                                    t("packed")
                                                                     :
                                                                     null
                                                                 }

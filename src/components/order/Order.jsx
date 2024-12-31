@@ -196,9 +196,9 @@ const Order = () => {
         return (
             <>
                 {Number(flag[0]) == 1 ? t("paymentPending") :
-                    Number(flag[0]) == 2 ? t("received") :
-                        Number(flag[0]) == 3 ? t("processed") :
-                            Number(flag[0]) == 4 ? t("shipped") :
+                    Number(flag[0]) == 2 ? t("placed") :
+                        Number(flag[0]) == 3 ? t("confirmed") :
+                            Number(flag[0]) == 4 ? t("packed") :
                                 Number(flag[0]) == 5 ? t("outForDelivery") :
                                     Number(flag[0]) == 6 ? t("delivered") :
                                         Number(flag[0]) == 7 ? t("cancelled") :

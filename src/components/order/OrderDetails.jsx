@@ -27,7 +27,7 @@ const OrderDetails = React.memo(() => {
     // console.log(user);
 
     const [orderData, setOrderData] = useState(null);
-    const [orderStatus, setOrderStatus] = useState(t("recieved"));
+    const [orderStatus, setOrderStatus] = useState(t("placed"));
     const [showPdtRatingModal, setShowPdtRatingModal] = useState(false);
     const [ratingProductId, setRatingProductId] = useState(0);
     const [editRatingId, setEditRatingId] = useState(0);
@@ -48,9 +48,9 @@ const OrderDetails = React.memo(() => {
         } else if (orderData?.active_status === "5") {
             setOrderStatus(t("out_for_delivery"));
         } else if (orderData?.active_status === "4") {
-            setOrderStatus(t("shipped"));
+            setOrderStatus(t("placed"));
         } else if (orderData?.active_status === "3") {
-            setOrderStatus(t("processed"));
+            setOrderStatus(t("confirmed"));
         }
         else if (orderData?.active_status === "7") {
             setOrderStatus(t("cancelled"));
