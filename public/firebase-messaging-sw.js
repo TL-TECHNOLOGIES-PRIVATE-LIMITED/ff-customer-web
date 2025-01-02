@@ -4,13 +4,13 @@ importScripts('https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js')
 
 firebase.initializeApp({
     // EDITME:
-    apiKey: 'AIzaSyAv4Eu9eMCRX2R3obN5dWI98Ovj1JMR47E',
-    authDomain: 'http://frosty-foods-df69c.firebaseapp.com',
-    projectId: 'frosty-foods-df69c',
-    storageBucket: '683119608165',
-    messagingSenderId: 'http://frosty-foods-df69c.firebasestorage.app',
-    appId: '1:683119608165:web:bb95e2103c8aafc796618c',
-    measurementId: 'G-WNBQLNJYEL',
+    apiKey: 'AIzaSyC_6oC7imbci1aDyUgNMcien24D9R7DHsU',
+    authDomain: 'http://frostyfoods-fc646.firebaseapp.com',
+    projectId: 'frostyfoods-fc646',
+    storageBucket: '252681830236',
+    messagingSenderId: 'http://frostyfoods-fc646.firebasestorage.app',
+    appId: '1:252681830236:web:4933a441df849a4ed28b99',
+    measurementId: 'G-8VX0NDE8MC',
 });
 
 const messaging = firebase.messaging();
