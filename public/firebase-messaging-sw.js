@@ -7,8 +7,8 @@ firebase.initializeApp({
     apiKey: 'AIzaSyC_6oC7imbci1aDyUgNMcien24D9R7DHsU',
     authDomain: 'http://frostyfoods-fc646.firebaseapp.com',
     projectId: 'frostyfoods-fc646',
-    storageBucket: '252681830236',
-    messagingSenderId: 'http://frostyfoods-fc646.firebasestorage.app',
+    storageBucket: 'http://frostyfoods-fc646.firebasestorage.app',
+    messagingSenderId: '252681830236',
     appId: '1:252681830236:web:4933a441df849a4ed28b99',
     measurementId: 'G-8VX0NDE8MC',
 });
@@ -21,7 +21,7 @@ try {
         const notificationTitle = data?.title;
         const notificationOptions = {
             body: data?.body,
-            icon: './logo.png' || 0,
+            icon: './fflogo.jpeg' || 0,
             image: data?.image
         };
 
