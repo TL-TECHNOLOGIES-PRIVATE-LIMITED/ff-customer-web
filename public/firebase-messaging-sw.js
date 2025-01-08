@@ -21,7 +21,7 @@ try {
         const notificationTitle = data?.title;
         const notificationOptions = {
             body: data?.body,
-            icon: './fflogo.jpeg' || 0,
+            icon: './logo.png' || 0,
             image: data?.image
         };
 
