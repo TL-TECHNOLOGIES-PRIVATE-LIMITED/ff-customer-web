@@ -353,11 +353,48 @@ const Header = () => {
         dispatch(setCSSMode({ data: theme }));
     };
 
-    const handleCatChange = (category) => {
-        setSelectedCategory(category?.name)
-        setSelectedCategoryId(category?.id)
-    }
+    //updated category filter
 
+    // const handleCatChange = (category) => {
+    //     setSelectedCategory(category?.name)
+    //     setSelectedCategoryId(category?.id)
+    // }
+
+    const handleCatChange = (category) => {
+        if (category === "All categories") {
+            setSelectedCategory("All categories");
+            setSelectedCategoryId(null);
+            dispatch(setFilterCategory({ data: null }));
+            
+            // Clear search if there is any
+            if (filter?.search) {
+                dispatch(setFilterSearch({ data: "" }));
+                setQuery("");
+            }
+        } else {
+            setSelectedCategory(category?.name);
+            setSelectedCategoryId(category?.id);
+            dispatch(setFilterCategory({ data: category?.id }));
+            
+            // Only navigate to products if we're not already there
+            if (curr_url.pathname !== "/products") {
+                navigate("/products");
+            }
+        }
+        
+        // Trigger search with new category if there's a search query
+        if (filter?.search) {
+            if (typingTimeout) {
+                clearTimeout(typingTimeout);
+            }
+            
+            const timeout = setTimeout(() => {
+                handleSearch();
+            }, 500);
+            
+            setTypingTimeout(timeout);
+        }
+    };
     const handleSearch = async () => {
         try {
             const response = await newApi.productByFilter({ latitude: city?.city?.latitude, longitude: city?.city?.longitude, filters: filter })
